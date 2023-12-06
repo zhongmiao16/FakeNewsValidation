@@ -387,29 +387,41 @@
     // AI/Human-generated belief/confidence
     var confidence = {
         type: jsPsychMultipleSlider, // this is a custom plugin in utils
-        questions: [{
-            prompt: "<b>To what extent do you believe the previous excerpt was AI- or human-generated?</b><br>",
-            name: "ai-human_generationbelief",
-            ticks: ["AI-Generated", "Human-Generated"],
-            required: true,
-            min: 0,
-            max: 1,
-            step: 0.01,
-            slider_start: 0.5,
-        }],
+        questions: [
+            {
+                prompt: "<b>To what extent do you believe the previous excerpt was AI- or human-generated?</b><br>",
+                name: "ai_confidence",
+                ticks: ["AI-Generated", "Human-Generated"],
+                required: true,
+                min: 0,
+                max: 1,
+                step: 0.01,
+                slider_start: 0.5,
+            },
+            {
+                prompt: "<b>To what extent do you believe the previous excerpt was fake/real?</b><br>",
+                name: "real_confidence",
+                ticks: ["Fake", "Real"],
+                required: true,
+                min: 0,
+                max: 1,
+                step: 0.01,
+                slider_start: 0.5,
+            },
+        ],
         require_movement: true,
         data: {
-            screen: "ai-human_generationbelief",
+            screen: "confidence",
         },
     }
 
-    // Emotionality of excerpt ****EXACT WORDING TBC*****
+    // Emotionality of excerpt
     var emotionality= {
         type: jsPsychMultipleSlider,
         questions: [{
-            prompt: "<b>How emotionally stirring was the previous prompt?</b><br>",
+            prompt: "<b>How emotional did you find this excerpt?</b><br>",
             name: "emotionality",
-            ticks: ["Not emotionally stirring", "Highly emotionally stirring"],
+            ticks: ["Not at all", "Very"],
             required: true,
             min: 0,
             max: 1,

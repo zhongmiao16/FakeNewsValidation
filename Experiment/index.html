@@ -143,7 +143,8 @@
                 prompt: "Enter the participant's ID:",
                 placeholder: "S00",
                 name: "Participant_ID",
-                required: true,
+                // required: true,
+                required: false,
             },
         ],
         data: {
@@ -168,7 +169,8 @@
                 prompt: 'What is your gender?',
                 options: ["Male", "Female", "Non-Binary", "Prefer not to say"],    // Prefer not to say/ Non-binary options??
                 name: "sex",
-                required: true,
+                // required: true,
+                required: false,
             },
         ],
         data: {screen: "demographics"},
@@ -180,7 +182,8 @@
             {
             prompt: "Enter your age",
             name: 'age',
-            required:true,
+            // required: true,
+            required: false,
             }
         ],
         data: {screen:'demographics'}
@@ -199,7 +202,8 @@
                     'Undergraduate degree',
                     'Postgraduate degree'
                 ], 
-                required: true
+                // required: true
+                required: false,
             }, 
         ],
         data: {screen:'demographics'}
@@ -222,7 +226,8 @@
                     "Others"
                 ],
                 name: "major",
-                required:true,
+                // required: true,
+                required: false,
             }
         ],
         data:{screen: "major"}
@@ -234,7 +239,8 @@
             {
             prompt: "If you selected Others, please elaborate",
             name: 'other_major',
-            required:true,
+            // required: true,
+            required: false,
             }
         ],
         data: {screen:'other_major'}
@@ -259,12 +265,14 @@
             {
                 prompt: "What is your nationality?",
                 name: 'nationality',
-                required: true,
+                // required: true,
+                required: false,
             },
             {
                 prompt: "How many years have you lived in Singapore?",
                 name: 'nationality',
-                required: true,
+                // required: true,
+                required: false,
             }
         ],
         data: {screen:'nationality'}
@@ -282,7 +290,8 @@
                     "Others"
                 ],
                 name: "ethnicity",
-                required:true,
+                // required: true,
+                required: false,
             }
         ],
         data:{screen: "ethnicity"}
@@ -294,7 +303,8 @@
             {
             prompt: "If you selected Others, please elaborate",
             name: 'other_ethnicity',
-            required:true,
+            // required: true,
+            required: false,
             }
         ],
         data: {screen:'other_ethnicity'}
@@ -367,7 +377,8 @@
                     "Others"
                 ],
                 name: "attention_topic",
-                required: true,
+                // required: true,
+                required: false,
             },
             {
                 prompt: "Was the news excerpt based in Singapore?",
@@ -376,7 +387,8 @@
                     "No"
                 ],
                 name: "attention_location",
-                required: true,
+                // required: true,
+                required: false,
             },
         ],
         data: {
@@ -392,7 +404,8 @@
                 prompt: "<b>To what extent do you believe the previous excerpt was AI- or human-generated?</b><br>",
                 name: "ai_confidence",
                 ticks: ["AI-Generated", "Human-Generated"],
-                required: true,
+                // required: true,
+                required: false,
                 min: 0,
                 max: 1,
                 step: 0.01,
@@ -402,14 +415,16 @@
                 prompt: "<b>To what extent do you believe the previous excerpt was fake/real?</b><br>",
                 name: "real_confidence",
                 ticks: ["Fake", "Real"],
-                required: true,
+                // required: true,
+                required: false,
                 min: 0,
                 max: 1,
                 step: 0.01,
                 slider_start: 0.5,
             },
         ],
-        require_movement: true,
+        // require_movement: true,
+        require_movement: false,
         data: {
             screen: "confidence",
         },
@@ -422,13 +437,15 @@
             prompt: "<b>How emotional did you find this excerpt?</b><br>",
             name: "emotionality",
             ticks: ["Not at all", "Very"],
-            required: true,
+            // required: true,
+            required: false,
             min: 0,
             max: 1,
             step: 0.01,
             slider_start: 0.5,
         }],
-        require_movement: true,
+        // require_movement: true,
+        require_movement: false,
         data: {
             screen: "emotionality",
         }
@@ -441,13 +458,15 @@
             prompt: "<b>How likely are you to share this news excerpt to others?</b><br>",
             name: "shareability",
             ticks: ["Not likely", "Highly likely"],
-            required: true,
+            // required: true,
+            required: false,
             min: 0,
             max: 1,
             step: 0.01,
             slider_start: 0.5,
         }],
-        require_movement: true,
+        // require_movement: true,
+        require_movement: false,
         data: {
             screen: "shareability",
         },
@@ -486,31 +505,36 @@
                 prompt: "Internet",
                 name: "media_freq_internet",
                 options: ["Several times a day", "Once a day", '4-6 days a week', '2-3 days a week', 'Once a week', 'Less often than once a week'],
-                required: true,
+                // required: true,
+                required: false,
             },
             {
                 prompt: "Television",
                 name: "media_freq_tv",
                 options: ["Several times a day", "Once a day", '4-6 days a week', '2-3 days a week', 'Once a week', 'Less often than once a week'],
-                required: true,
+                // required: true,
+                required: false,
             },
             {
                 prompt: "Newspapers",
                 name: "media_freq_newspapers",
                 options: ["Several times a day", "Once a day", '4-6 days a week', '2-3 days a week', 'Once a week', 'Less often than once a week'],
-                required: true,
+                // required: true,
+                required: false,
             },
             {
                 prompt: "Books",
                 name: "media_freq_books",
                 options: ["Several times a day", "Once a day", '4-6 days a week', '2-3 days a week', 'Once a week', 'Less often than once a week'],
-                required: true,
+                // required: true,
+                required: false,
             },
             {
                 prompt: "Radio",
                 name: "media_freq_radio",
                 options: ["Several times a day", "Once a day", '4-6 days a week', '2-3 days a week', 'Once a week', 'Less often than once a week'],
-                required: true,
+                // required: true,
+                required: false,
             },                                    
         ],
         require_movement: true,
@@ -526,13 +550,15 @@
                 prompt: "Typically, how often do you access news? By news we mean national, international, regional/local news and other topical events accessed via radio, TV, newspaper or online.",
                 name: "news_freq",
                 options: ["Several times a day", "Once a day", 'Several times a week', 'Once a week', '2-3 times a month', 'Once a month', 'Less often than once a month', 'Never'],
-                required: true,
+                // required: true,
+                required: false,
             },
             {
                 prompt: "How interested, if at all, would you say you are in news?",
                 name: "news_interest",
                 options: ["Extremely interested", "Very interested", 'Somewhat interested', 'Not very interested', 'Not at all interested'],
-                required: true,
+                // required: true,
+                required: false,
             },                                    
         ],
         require_movement: true,
@@ -559,7 +585,8 @@
                     "Science and technology news",
                 ],
                 name: "news_type",
-                required: true,
+                // required: true,
+                required: false,
             },
             {
                 prompt: "Which of the following have you used in the last month as a source of news information?",
@@ -571,7 +598,8 @@
                     "Visiting links shared by friends or relatives (e.g., from WhatsApp etc.,)",
                 ],
                 name: "news_sources",
-                required: true,
+                // required: true,
+                required: false,
             },
         ],
         require_movement: true,
@@ -593,7 +621,8 @@
                     'To know what is the trending news in my community',
                     'To learn about current affairs'
                 ], 
-                required: true
+                // required: true
+                required: false,
             }, 
         ],
         data: {screen:'news_consumption_motivation'}
@@ -608,7 +637,8 @@
             prompt: GAAIS[n],
             name: GAAIS_dim[n],
             labels: ["<br>Strongly Disagree", "<br>Disagree", "<br>Neutral", "<br>Agree", "<br>Strongly Agree"],
-            required: true,
+            // required: true,
+            required: false,
         })
     }    
 
@@ -620,7 +650,8 @@
              "<p><b>About your Attitudes</b></p>" +
              "<p>We are interested in your attitudes towards Artificial Intelligence (AI).</p>" +
              "<p>Please read the statements below carefully and indicate the extent to which you agree with each statement.</p>",
-         require_movement: true,
+        //  require_movement: true,
+        require_movement: false,
          data: {
              screen: "GAAIS",
          },
@@ -641,7 +672,8 @@
                     "Others"
                 ],
                 name: "AI_usage",
-                required:true,
+                // required: true,
+                required: false,
             }
         ],
         data:{screen: "AI_usage"}
@@ -653,7 +685,8 @@
             {
             prompt: "If you selected Others, please elaborate",
             name: 'other_AI_usage',
-            required: true,
+            // required: true,
+            required: false,
             }
         ],
         data: {screen:'other_AI_usage'}
@@ -679,7 +712,8 @@
                 prompt: "How often do you use ChatGPT (or any other large language model-based chatbots if specified previously) for work/study/fun?",
                 name: "chatgpt_freq",
                 options: ["Every day", 'Several times a week', 'Once a week', '2-3 times a month', 'Once a month', 'Less often than once a month', 'Never'],
-                required: true,
+                // required: true,
+                required: false,
             },
         ],
         require_movement: true,

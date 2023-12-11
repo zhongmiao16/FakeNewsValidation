@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>News Generator</title>
+    <meta charset="utf-8">
+
+    <script src="../utils/jspsych/jspsych.js"></script>
+
+    <!--Load all necessary plugins stored in ../utils-->
+    <script src="../utils/jspsych/plugin-browser-check.js"></script>
+    <script src="../utils/jspsych/plugin-html-button-response.js"></script>
+    <script src="../utils/jspsych/plugin-fullscreen.js"></script>
+    <script src="../utils/jspsych/plugin-survey-text.js"></script>
+    <script src="../utils/jspsych/plugin-survey-html-form.js"></script>
+    <script src="../utils/jspsych/plugin-survey-multi-choice.js"></script>
+    <script src="../utils/jspsych/plugin-survey-multi-select.js"></script>
+    <script src="../utils/jspsych/plugin-survey-likert.js"></script>
+
+    <script src="../utils/jspsych/plugin-survey-multiple-slider.js"></script>
+    <script src="stimuli.js"></script>
+    <script src="parameters.js"></script>
+
+    <!-- Applying default style here -->
+    <link href="../utils/jspsych/jspsych.css" rel="stylesheet" type="text/css" />
+    <style>
+        /* set canvas to be full screen */
+        .jspsych-content {
+            max-width: 100%;
+        }
+
+        #jspsych-survey-html-form{
+            text-align: left;
+            margin: auto;
+        }
+
+        #jspsych-survey-html-form-next.jspsych-btn.jspsych-survey-html-form{
+            display:flex;
+            margin: auto;
+
+        }
+
+        /* increase the margin for multi-choice survey questions*/
+        #jspsych-survey-multi-choice-form{
+            margin: 60px;
+        }
+
+        #jspsych-survey-text{
+            margin: 35px;
+            text-align: left;
+        }
+
+        /*Hide scrollbar */
+        body {
+            overflow-y: scroll;
+        }
+
+        Body::-webkit-scrollbar {
+            display: none;
+        }
+
+        #align-middle img {
+            vertical-align: middle;
+            margin-left: 5px;
+        }
+        ul {
+        /* padding-right: 100; */
+        list-style-position: inside;
+        /* text-align: left; */
+        }
+
+    </style>
+</head>
+
+<body></body>
+
+<script>
+    /* ----------------- Initialize experiment ----------------- */
+    var timeline = []
+
+    var jsPsych = initJsPsych({
+        // show_progress_bar: true,
+        //message_progress_bar: "Completion",
+        on_finish: function () {
+            jsPsych.data.displayData("json")
+            jsPsych.data
+                .get()
+                .localSave(
+                    "json",
+                    `${jsPsych.data.get().values()[0]["participant_id"]
+                    }_ValidationNewsData.json`
+                )
+        },
+    })
+
+    // Enter fullscreen mode
+    timeline.push({
+        type: jsPsychFullscreen,
+        fullscreen_mode: true,
+    })
+
+    // Retrieve and save browser info
+    var browser_check = {
+        type: jsPsychBrowserCheck,
+        data: {
+            screen: "browser_info",
+        },
+        on_finish: function () {
+            data = jsPsych.data
+                .get()
+                .filter({screen: "browser_info"})
+                .values()[0]
+            jsPsych.data.addProperties({
+                ["screen_height"]: data["height"],
+                ["screen_width"]: data["width"],
+            })
+            for (var key in data) {
+                if (
+                    [
+                        "vsync_rate",
+                        "os",
+                        "mobile",
+                        "browser",
+                        "browser_version",
+                    ].includes(key)
+                ) {
+                    jsPsych.data.addProperties({
+                        [key]: data[key],
+                    })
+                }
+            }
+            jsPsych.data.addProperties()
+        },
+    }
+    timeline.push(browser_check)
+
+    /* ----------------- Session Info ----------------- */
+    // Participant information
+    var participant_info = {
+        type: jsPsychSurveyText,
+        questions: [
+            {
+                prompt: "Enter the participant's ID:",
+                placeholder: "S00",
+                name: "Participant_ID",
+                // required: true,
+                required: false,
+            },
+        ],
+        data: {
+            screen: "participant_info",
+            date: new Date().toLocaleDateString("fr-FR"),
+            time: new Date().toLocaleTimeString("fr-FR"),
+        },
+        on_finish: function () {
+            jsPsych.data.addProperties({
+                participant_id: jsPsych.data.get().last().values()[0]
+                ["response"]
+                ["Participant_ID"],
+            })
+        },
+    }
+   timeline.push(participant_info)
+
+    var sex = {
+        type: jsPsychSurveyMultiChoice,
+        questions: [
+            {
+                prompt: 'What is your gender?',
+                options: ["Male", "Female", "Non-Binary", "Prefer not to say"],    // Prefer not to say/ Non-binary options??
+                name: "sex",
+                // required: true,
+                required: false,
+            },
+        ],
+        data: {screen: "demographics"},
+    }
+
+    var age ={
+        type: jsPsychSurveyText,
+        questions:[
+            {
+            prompt: "Enter your age",
+            name: 'age',
+            // required: true,
+            required: false,
+            }
+        ],
+        data: {screen:'demographics'}
+    }
+
+    var education = {
+        type: jsPsychSurveyMultiChoice,
+        questions: [
+            {
+                prompt: "What is your highest education level? (including current if in progress) ", 
+                name: 'education_level', 
+                options: [
+                    'Primary school', 
+                    'Secondary school up to 16 years', 
+                    'Higher or secondary or further education (A-levels, Diploma, etc.)', 
+                    'Undergraduate degree',
+                    'Postgraduate degree'
+                ], 
+                // required: true
+                required: false,
+            }, 
+        ],
+        data: {screen:'demographics'}
+    }
+
+    var major = {
+        type: jsPsychSurveyMultiSelect,
+        questions: [
+            {
+                prompt: "What is your area of study?<br> Choose all that apply if you have more than one major.",
+                options: [
+                    "Arts and Social Sciences",
+                    "Communication and Media Studies",
+                    "Education",
+                    "Business",
+                    "Computer Science or Engineering",
+                    "Physical and Mathematical Sciences",
+                    "Medicine",
+                    "Law",
+                    "Others"
+                ],
+                name: "major",
+                // required: true,
+                required: false,
+            }
+        ],
+        data:{screen: "major"}
+    }
+
+    var other_major ={
+        type: jsPsychSurveyText,
+        questions:[
+            {
+            prompt: "If you selected Others, please elaborate",
+            name: 'other_major',
+            // required: true,
+            required: false,
+            }
+        ],
+        data: {screen:'other_major'}
+    }
+
+    // Prompt participants for major if they answer others
+    var if_other_major = {
+        timeline : [other_major],
+        conditional_function(){
+            var ans = jsPsych.data.get().last(1).values()[0]["response"]["major"]
+            if (ans.includes('Others')==true){
+                return true
+            }else{
+                return false
+            }
+        }
+    }
+
+    var nationality = {
+        type: jsPsychSurveyText,
+        questions:[
+            {
+                prompt: "What is your nationality?",
+                name: 'nationality',
+                // required: true,
+                required: false,
+            },
+            {
+                prompt: "How many years have you lived in Singapore?",
+                name: 'nationality',
+                // required: true,
+                required: false,
+            }
+        ],
+        data: {screen:'nationality'}
+    }
+
+    var ethnicity = {
+        type: jsPsychSurveyMultiChoice,
+        questions: [
+            {
+                prompt: "What is your ethnicity?",
+                options: [
+                    "Chinese",
+                    "Malay",
+                    "Indian",
+                    "Others"
+                ],
+                name: "ethnicity",
+                // required: true,
+                required: false,
+            }
+        ],
+        data:{screen: "ethnicity"}
+    }
+
+    var other_ethnicity ={
+        type: jsPsychSurveyText,
+        questions:[
+            {
+            prompt: "If you selected Others, please elaborate",
+            name: 'other_ethnicity',
+            // required: true,
+            required: false,
+            }
+        ],
+        data: {screen:'other_ethnicity'}
+    }
+
+    // Prompt participants for major if they answer others
+    var if_other_ethnicity = {
+        timeline : [other_ethnicity],
+        conditional_function(){
+            var ans = jsPsych.data.get().last(1).values()[0]["response"]["ethnicity"]
+            if (ans.includes('Others')==true){
+                return true
+            }else{
+                return false
+            }
+        }
+    }
+
+    timeline.push(sex, age, education, major, if_other_major, nationality, ethnicity, if_other_ethnicity)
+
+    /* ----------------- Experiment Variables ----------------- */
+    var trial_number = 1
+
+    // Instructions
+    var general_instructions = {
+        type: jsPsychHtmlButtonResponse,
+        stimulus:
+            "<p><b>Instructions</b></p>" +
+            "<p>In this experiment, you will be given multiple news excerpts to read.</p>"+
+            "<p>Please read each excerpt <b>carefully</b> and when you are done reading, press the <b>'Continue'</b> button to move on.</p>"+
+            "<p>Following each excerpt, you will be asked several questions regarding the excerpt you just read. You will be tasked to read 64 excerpts in total.</p>",
+        choices: ["Ready to Start!"],
+        data: {screen: "general_instructions"}
+    }
+
+    timeline.push(general_instructions)
+
+    // Set stimuli block for trials
+    var block = jsPsych.randomization.sampleWithReplacement([1,2,3,4,5,6,7,8],1) 
+
+    console.log(block)
+
+    var stim_list = stimuli.filter(function(stimulus){
+        return block.includes(stimulus.block)
+    })
+    var stim_list = jsPsych.randomization.shuffle(stim_list)
+
+    var trial = {
+        type: jsPsychHtmlButtonResponse,
+        stimulus: function() { 
+            var stim =  '<p><b>Part '+ trial_number + '/64</b></p>'+
+                        '<p style="margin:60px;text-align:left">'+
+                        jsPsych.timelineVariable('stimulus')+'</p>';
+            return stim;
+        },
+        choices: ["Continue"],
+    }
+
+    // Attention check
+    var attention_check = {
+        type: jsPsychSurveyMultiChoice,
+        questions: [
+            {
+                prompt: "What is the topic of the news excerpt you just read?",
+                options: [
+                    "Economy",
+                    "Politics",
+                    "Science and Technology",
+                    "Social Issues",
+                    "Others"
+                ],
+                name: "attention_topic",
+                // required: true,
+                required: false,
+            },
+            {
+                prompt: "Was the news excerpt based in Singapore?",
+                options: [
+                    "Yes",
+                    "No"
+                ],
+                name: "attention_location",
+                // required: true,
+                required: false,
+            },
+        ],
+        data: {
+            screen: "attention_check",
+        },
+    }
+
+    // AI/Human-generated belief/confidence
+    var confidence = {
+        type: jsPsychMultipleSlider, // this is a custom plugin in utils
+        questions: [
+            {
+                prompt: "<b>To what extent do you believe the previous excerpt was AI- or human-generated?</b><br>",
+                name: "ai_confidence",
+                ticks: ["AI-Generated", "Human-Generated"],
+                // required: true,
+                required: false,
+                min: 0,
+                max: 1,
+                step: 0.01,
+                slider_start: 0.5,
+            },
+            {
+                prompt: "<b>To what extent do you believe the previous excerpt was fake/real?</b><br>",
+                name: "real_confidence",
+                ticks: ["Fake", "Real"],
+                // required: true,
+                required: false,
+                min: 0,
+                max: 1,
+                step: 0.01,
+                slider_start: 0.5,
+            },
+        ],
+        // require_movement: true,
+        require_movement: false,
+        data: {
+            screen: "confidence",
+        },
+    }
+
+    // Emotionality of excerpt
+    var emotionality= {
+        type: jsPsychMultipleSlider,
+        questions: [{
+            prompt: "<b>How emotional did you find this excerpt?</b><br>",
+            name: "emotionality",
+            ticks: ["Not at all", "Very"],
+            // required: true,
+            required: false,
+            min: 0,
+            max: 1,
+            step: 0.01,
+            slider_start: 0.5,
+        }],
+        // require_movement: true,
+        require_movement: false,
+        data: {
+            screen: "emotionality",
+        }
+    }
+
+    // Whether participants would share the excerpt with other people
+    var shareability= {
+        type: jsPsychMultipleSlider,
+        questions: [{
+            prompt: "<b>How likely are you to share this news excerpt to others?</b><br>",
+            name: "shareability",
+            ticks: ["Not likely", "Highly likely"],
+            // required: true,
+            required: false,
+            min: 0,
+            max: 1,
+            step: 0.01,
+            slider_start: 0.5,
+        }],
+        // require_movement: true,
+        require_movement: false,
+        data: {
+            screen: "shareability",
+        },
+        on_finish: function(){
+            trial_number +=1
+        }
+    }
+
+    // Create block of trials
+    var block = {
+        timeline: [trial, attention_check, confidence, emotionality, shareability],
+        timeline_variables: stim_list,
+        randomize_order:true,
+    }
+
+   timeline.push(block)
+
+   // Debriefing Questions
+   var debrief = {
+        type: jsPsychHtmlButtonResponse,
+        choices: ["Continue"],
+        stimulus: '<p>Great job!</p>'+
+        '<p>You have almost completed the experiment! We would like to ask you a few more questions related to the task you just completed.<br> Please click continue to proceed.<br><br></p>',
+        data: {screen: "debrief"},
+        on_finish: function(){
+            trial_number +=1
+        }
+    }
+
+   var media_consumption_freq = {
+        type: jsPsychSurveyMultiChoice,
+        preamble: "<br><p>We would like to understand more about how your news reading habits.</p>"+
+                "<p>How often do you consume media through the following mediums?</p>",
+        questions: [
+            {
+                prompt: "Internet",
+                name: "media_freq_internet",
+                options: ["Several times a day", "Once a day", '4-6 days a week', '2-3 days a week', 'Once a week', 'Less often than once a week'],
+                // required: true,
+                required: false,
+            },
+            {
+                prompt: "Television",
+                name: "media_freq_tv",
+                options: ["Several times a day", "Once a day", '4-6 days a week', '2-3 days a week', 'Once a week', 'Less often than once a week'],
+                // required: true,
+                required: false,
+            },
+            {
+                prompt: "Newspapers",
+                name: "media_freq_newspapers",
+                options: ["Several times a day", "Once a day", '4-6 days a week', '2-3 days a week', 'Once a week', 'Less often than once a week'],
+                // required: true,
+                required: false,
+            },
+            {
+                prompt: "Books",
+                name: "media_freq_books",
+                options: ["Several times a day", "Once a day", '4-6 days a week', '2-3 days a week', 'Once a week', 'Less often than once a week'],
+                // required: true,
+                required: false,
+            },
+            {
+                prompt: "Radio",
+                name: "media_freq_radio",
+                options: ["Several times a day", "Once a day", '4-6 days a week', '2-3 days a week', 'Once a week', 'Less often than once a week'],
+                // required: true,
+                required: false,
+            },                                    
+        ],
+        require_movement: true,
+        data: {
+            screen: "media_consumption_freq",
+        },
+   }
+
+   var news_freq_interest = {
+        type: jsPsychSurveyMultiChoice,
+        questions: [
+            {
+                prompt: "Typically, how often do you access news? By news we mean national, international, regional/local news and other topical events accessed via radio, TV, newspaper or online.",
+                name: "news_freq",
+                options: ["Several times a day", "Once a day", 'Several times a week', 'Once a week', '2-3 times a month', 'Once a month', 'Less often than once a month', 'Never'],
+                // required: true,
+                required: false,
+            },
+            {
+                prompt: "How interested, if at all, would you say you are in news?",
+                name: "news_interest",
+                options: ["Extremely interested", "Very interested", 'Somewhat interested', 'Not very interested', 'Not at all interested'],
+                // required: true,
+                required: false,
+            },                                    
+        ],
+        require_movement: true,
+        data: {
+            screen: "news_consumption_freq_interest",
+        },
+   }
+
+   var news_type_source = {
+    type: jsPsychSurveyMultiSelect,
+        questions: [
+            {
+                prompt: "Which of the following types of news are you most interested in? Please choose up to five options.",
+                options: [
+                    "Local news",
+                    "International news",
+                    "Business and financial news",
+                    "News on world politics",
+                    "News about the economy",
+                    "Fun/Weird news",
+                    "Health and education news",
+                    "Arts and culture news",
+                    "Sports news",
+                    "Science and technology news",
+                ],
+                name: "news_type",
+                // required: true,
+                required: false,
+            },
+            {
+                prompt: "Which of the following have you used in the last month as a source of news information?",
+                options: [
+                    "Newspapers (e.g., The Straits Times)",
+                    "Television",
+                    "News websites / News mobile apps (e.g., CNN, CNA, BBC)",
+                    "Social media (e.g., Facebook, Twitter, YouTube)",
+                    "Visiting links shared by friends or relatives (e.g., from WhatsApp etc.,)",
+                ],
+                name: "news_sources",
+                // required: true,
+                required: false,
+            },
+        ],
+        require_movement: true,
+        data: {
+            screen: "news_consumption_type_source",
+        },
+    }
+
+    var news_motivation = {
+        type: jsPsychSurveyMultiChoice,
+        questions: [
+            {
+                prompt: "In general, which of the following drives you to obtain news information most?", 
+                name: 'news_motivation', 
+                options: [
+                    'To follow breaking news', 
+                    'To chat about news with people', 
+                    'To know what news my friends are following', 
+                    'To know what is the trending news in my community',
+                    'To learn about current affairs'
+                ], 
+                // required: true
+                required: false,
+            }, 
+        ],
+        data: {screen:'news_consumption_motivation'}
+    }
+
+    timeline.push(debrief, media_consumption_freq, news_freq_interest, news_type_source, news_motivation)
+
+    /* Attitudes towards AI *========================================*/
+    var GAAIS_items = []
+    for (var n = 0; n < 10; n++) {
+        GAAIS_items.push({
+            prompt: GAAIS[n],
+            name: GAAIS_dim[n],
+            labels: ["<br>Strongly Disagree", "<br>Disagree", "<br>Neutral", "<br>Agree", "<br>Strongly Agree"],
+            // required: true,
+            required: false,
+        })
+    }    
+
+    var AI_attitudes = {
+         type: jsPsychSurveyLikert,
+         questions: GAAIS_items,
+         randomize_question_order: true,
+         preamble:
+             "<p><b>About your Attitudes</b></p>" +
+             "<p>We are interested in your attitudes towards Artificial Intelligence (AI).</p>" +
+             "<p>Please read the statements below carefully and indicate the extent to which you agree with each statement.</p>",
+        //  require_movement: true,
+        require_movement: false,
+         data: {
+             screen: "GAAIS",
+         },
+    }
+
+    var AI_usage = {
+        type: jsPsychSurveyMultiSelect,
+        questions: [
+            {
+                prompt: "Which, if any, large language model-based chatbots have you previously used?<br> Choose all that apply if you used more than one.",
+                options: [
+                    "ChatGPT",
+                    "Google Bard",
+                    "Microsoft Bing Chat",
+                    "Llama/Llama 2",
+                    "Falcon",
+                    "None",
+                    "Others"
+                ],
+                name: "AI_usage",
+                // required: true,
+                required: false,
+            }
+        ],
+        data:{screen: "AI_usage"}
+    }
+
+    var other_AI_usage ={
+        type: jsPsychSurveyText,
+        questions:[
+            {
+            prompt: "If you selected Others, please elaborate",
+            name: 'other_AI_usage',
+            // required: true,
+            required: false,
+            }
+        ],
+        data: {screen:'other_AI_usage'}
+    }
+
+    // Prompt participants for major if they answer others
+    var if_other_AI_usage = {
+        timeline : [other_major],
+        conditional_function(){
+            var ans = jsPsych.data.get().last(1).values()[0]["response"]["AI_usage"]
+            if (ans.includes('Others')==true){
+                return true
+            }else{
+                return false
+            }
+        }
+    }
+    
+    var chatgpt_freq = {
+        type: jsPsychSurveyMultiChoice,
+        questions: [
+            {
+                prompt: "How often do you use ChatGPT (or any other large language model-based chatbots if specified previously) for work/study/fun?",
+                name: "chatgpt_freq",
+                options: ["Every day", 'Several times a week', 'Once a week', '2-3 times a month', 'Once a month', 'Less often than once a month', 'Never'],
+                // required: true,
+                required: false,
+            },
+        ],
+        require_movement: true,
+        data: {
+            screen: "chatgpt_freq",
+        }, 
+    }
+
+    timeline.push(AI_attitudes, AI_usage, if_other_AI_usage, chatgpt_freq)
+
+    // End Experiment
+    var end_experiment = {
+        type: jsPsychHtmlButtonResponse,
+        choices: ["End"],
+        stimulus:
+                "<p>Thank you for participating!</p>" +
+                "<p>Please inform the experimenter that you have completed the experiment.</p>",
+        data: {screen: "final_results"},
+    }
+
+    timeline.push(end_experiment)
+
+    /* ----------------- Run the timeline ----------------- */
+    jsPsych.run(timeline)
+
+</script>
+
+</html>

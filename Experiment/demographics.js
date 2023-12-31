@@ -65,10 +65,10 @@ function demographics_consent(experimenter = "DEFAULT") {
             "<h1>Informed Consent</h1>" +
             // Overview
             "<p align='left'><b>Invitation to Take Part</b><br>" +
-            "You are being invited to take part in a research study to further our understanding of Human psychology. Thank you for carefully reading this information sheet. This study is being conducted by Prof Annabel Chen from the School of Social Sciences, Nanyang Technological University, who is happy to be contacted (TODO) if you have any questions.</p>" +
+            "You are being invited to take part in a research study to further our understanding of Human psychology. Thank you for carefully reading this information sheet. This study is being conducted by Prof Annabel Chen from the School of Social Sciences, Nanyang Technological University, who is happy to be contacted if you have any questions.</p>" +
             // Description
             "<p align='left'><b>Why have I been invited and what will I do?</b><br>" +
-            "We are surveying adults to understand how mood fluctuations and mood disorders symptoms (or absence thereof) are expressed and what difficulties they can generate. This study contains various questionnaires about your personality, feelings and current state of mind. The whole experiment will take you <b>about 10 min</b> to complete. Please make you sure that you are in a quiet environment, and that you have time to complete it in one go.</p>" +
+            "We are surveying adults to understand how people judge real and fake news articles. The whole experiment will take you <b>about 30S min</b> to complete. Please make you sure that you are in a quiet environment, and that you have time to complete it in one go.</p>" +
             // Results and personal information
             "<p align='left'><b>What will happen to the results and my personal information?</b><br>" +
             "The results of this research may be written into a scientific publication. Your anonymity will be ensured in the way described in the consent information below. Please read this information carefully and then, if you wish to take part, please acknowledge that you have fully understood this sheet, and that you consent to take part in the study as it is described here.</p>" +
@@ -83,7 +83,7 @@ function demographics_consent(experimenter = "DEFAULT") {
             // "<p align='left'>Your participation in this research will be kept completely confidential. Your responses are entirely anonymous, and no IP address or any identifiers is collected.</p>" +
             // "<p align='left'><b>By participating, you agree to follow the instructions and provide honest answers.</b> If you do not wish to participate this survey, simply close your browser.</p>" +
             // "<p>Please note that various checks will be performed to ensure the validity of the data.<br>We reserve the right to return your participation or prorate reimbursement should we detect non-valid responses (e.g., random pattern of answers, instructions not read, ...).</p>"
-            "<p align='left'><br><sub><sup>For further information about this research, or if you have any concerns, please contact Dr Dominique Makowski (D.Makowski@sussex.ac.uk). This research has been approved (ER/NAAA21/1) by the ethics board of the School of Psychology. The University of Sussex has insurance in place to cover its legal liabilities in respect of this study.</sup></sub></p>",
+            "<p align='left'><br><sub><sup>For further information about this research, or if you have any concerns, please contact Prof Annabel Chen (annabelchen@ntu.edu.sg). This research has been approved (XX/XXXX/XX) by the ethics board of the university.</sup></sub></p>",
 
         choices: ["I read, understood, and I consent"],
         data: { screen: "consent" },
@@ -99,7 +99,7 @@ function demographics_consent(experimenter = "DEFAULT") {
 var demographics_waitdatasaving = {
     type: jsPsychHtmlButtonResponse,
     stimulus:
-        "<p>Done! now click on 'Continue' and <b>wait until your responses have been successfully saved</b> before closing the tab.</p> ",
+        "<p>Done!  Now click on 'Continue' and <b>wait until your responses have been successfully saved</b> before closing the tab.</p> ",
     choices: ["Continue"],
     data: { screen: "waitdatasaving" },
 }
@@ -158,11 +158,11 @@ var demographics_multichoice = {
         {
             prompt: "English level",
             options: [
-                "native",
-                "fluent (academic)",
-                "fluent (conversational)",
-                "intermediate",
-                "beginner",
+                "Native",
+                "Fluent (academic)",
+                "Fluent (conversational)",
+                "Intermediate",
+                "Beginner",
             ],
             name: "english",
         },
@@ -176,12 +176,17 @@ var demographics_freetext = {
     type: jsPsychSurveyText,
     questions: [
         {
+            prompt: "What is your area of study?",
+            placeholder: "e.g., 'Business', 'Computer Science', 'Arts and Humanities'",
+            name: "discipline",
+        },
+        {
             prompt: "Please enter your age (in years)",
             placeholder: "e.g., '31'",
             name: "age",
         },
         {
-            prompt: "Please enter your nationality?",
+            prompt: "Please enter your nationality",
             name: "nationality",
             // required: true,
             required: false,

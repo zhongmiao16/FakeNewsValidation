@@ -1,71 +1,75 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <!-- Title shown in tab -->
-        <title>University of Sussex - Research</title>
 
-        <!-- Load all necessary plugins -->
-        <script src="https://unpkg.com/jspsych"></script>
-        <script src="https://unpkg.com/@jspsych/plugin-browser-check"></script>
-        <script src="https://unpkg.com/@jspsych/plugin-html-button-response"></script>
-        <script src="https://unpkg.com/@jspsych/plugin-survey-text"></script>
-        <script src="https://unpkg.com/@jspsych/plugin-survey-likert"></script>
-        <script src="https://unpkg.com/@jspsych/plugin-survey-multi-choice"></script>
-        <script src="https://unpkg.com/@jspsych/plugin-survey-multi-select"></script>
-        <script src="https://unpkg.com/@jspsych/multiple-slider"></script>
+<head>
+    <!-- Title shown in tab -->
+    <title>University of Sussex - Research</title>
 
-        <!-- To save data via DataPipe (for online experiments) -->
-        <script src="https://unpkg.com/@jspsych-contrib/plugin-pipe@0.3"></script>
+    <!-- Load all necessary plugins -->
+    <script src="https://unpkg.com/jspsych"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-browser-check"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-button-response"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-survey-text"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-survey-likert"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-survey-multi-choice"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-survey-multi-select"></script>
+    <script src="../utils/jspsych/plugin-survey-multiple-slider.js"></script>
 
-        <!-- Load parameters here (always below the loading of the JsPsych) -->
-        <script src="demographics.js"></script>
+    <!-- To save data via DataPipe (for online experiments) -->
+    <script src="https://unpkg.com/@jspsych-contrib/plugin-pipe@0.3"></script>
 
-        <link
-            href="https://unpkg.com/jspsych/css/jspsych.css"
-            rel="stylesheet"
-            type="text/css"
-        />
-        <style>
-            .narrow-text {
-                max-width: 50%;
-            }
-        </style>
-    </head>
+    <!-- Load parameters here (always below the loading of the JsPsych) -->
+    <script src="demographics.js"></script>
+    <script src="stimuli.js"></script>
+    <script src="fakenews.js"></script>
 
-    <body></body>
+    <link href="https://unpkg.com/jspsych/css/jspsych.css" rel="stylesheet" type="text/css" />
+    <style>
+        .narrow-text {
+            max-width: 50%;
+        }
+    </style>
+</head>
 
-    <script>
-        // Initialize experiment =================================================
-        var timeline = []
+<body></body>
 
-        var jsPsych = initJsPsych({
-            // on_finish: function () {
-            //     jsPsych.data.displayData("json") // Display data in browser
-            // },
-        })
+<script>
+    // Initialize experiment =================================================
+    var timeline = []
 
-        // Session and Participant Info ----------------------------------------
-        timeline.push(demographics_consent((experimenter = "Singapore")))
-        timeline.push(demographics_browser_info)
-        timeline.push(demographics_info)
+    var jsPsych = initJsPsych({
+        on_finish: function () {
+            jsPsych.data.displayData("json") // Display data in browser
+        },
+    })
 
-        // End =================================================================
+    // Session and Participant Info ----------------------------------------
+    // timeline.push(demographics_consent((experimenter = "Singapore")))
+    // timeline.push(demographics_browser_info)
+    // timeline.push(demographics_info)
 
-        timeline.push(demographics_waitdatasaving)
+    // Fake News ===========================================================
+    // timeline.push(fakenews_instructions)
+    timeline.push(fakenews_block1)
 
-        // TODO: Save data via DataPipe
-        // timeline.push({
-        //     type: jsPsychPipe,
-        //     action: "save",
-        //     experiment_id: "aFDUfulnpbUg", // This in generated in the DataPipe interface
-        //     filename: `${jsPsych.randomization.randomID(10)}.csv`,
-        //     data_string: () => jsPsych.data.get().csv(),
-        // })
+    // End =================================================================
 
-        timeline.push(demographics_endscreen("TODO"))
+    // timeline.push(demographics_waitdatasaving)
 
-        /* ----------------- Run the timeline ----------------- */
-        jsPsych.run(timeline)
-        // jsPsych.simulate(timeline, "data-only")
-    </script>
+    // TODO: Save data via DataPipe
+    // timeline.push({
+    //     type: jsPsychPipe,
+    //     action: "save",
+    //     experiment_id: "aFDUfulnpbUg", // This in generated in the DataPipe interface
+    //     filename: `${jsPsych.randomization.randomID(10)}.csv`,
+    //     data_string: () => jsPsych.data.get().csv(),
+    // })
+
+    // timeline.push(demographics_endscreen("TODO"))
+
+    /* ----------------- Run the timeline ----------------- */
+    jsPsych.run(timeline)
+    // jsPsych.simulate(timeline, "data-only")
+</script>
+
 </html>

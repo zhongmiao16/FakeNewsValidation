@@ -3,28 +3,27 @@ var trial_number = 1
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1))
-            ;[array[i], array[j]] = [array[j], array[i]]
+        ;[array[i], array[j]] = [array[j], array[i]]
     }
     return array
 }
 
 // Randomize within categories
-stimuli_list = []  // Initialize 
+stimuli_list = [] // Initialize
 // Loop through unique categories
 for (let cat of [...new Set(stimuli.map((a) => a.code))]) {
     // Get all stimuli of this category
-    console.log(cat)
     var cat_stimuli = stimuli.filter((a) => a.code == cat)
 
     // AI vs. Human
     for (let nat of [...new Set(stimuli.map((a) => a.type))]) {
-        console.log(nat)
         var nat_stimuli = stimuli.filter((a) => a.type == nat)
-        nat_stimuli = shuffleArray(nat_stimuli)  // Shuffle
+        nat_stimuli = shuffleArray(nat_stimuli) // Shuffle
         // Add 2 first stimuli to stimuli_list
         nat_stimuli.slice(0, 2).forEach((a) => stimuli_list.push(a))
     }
 }
+stimuli_list = shuffleArray(stimuli_list) // Shuffle
 
 // Randomize ticks order
 var ticks_real = shuffleArray(["Real", "Fake"])
@@ -53,12 +52,12 @@ var fakenews_instructions = {
         "<li><b>Real vs. Fake</b>: Do you think that the content of the news is <b>real</b> (true) or <b>fake</b> (false).</li>" +
         "<li><b>Human vs. AI-generated</b>: Do you think the text was written by a <b>Human or an AI</b> (regardless of whether the content is true or false).</li>" +
         "<li><b>Engaging</b>: To what extent did you find the news engaging (e.g., interesting or fun). Strongly engaging content would typically lead us to spend more time searching more information, or commenting on and sharing it.</li>" +
-        "<li><b>Emotionality</b>: To what extent was the news \"emotional\". Did the news trigger any feelings in you while reading it?</li>" +
+        '<li><b>Emotionality</b>: To what extent was the news "emotional". Did the news trigger any feelings in you while reading it?</li>' +
         "<li><b>Importance</b>: Assuming the news is true, to what extent is it important (e.g., a matter of national concern)?</li>" +
         "<li><b>Relevance</b>: To what extend was the news about something relevant to you, either because it's something you care about, or something that might impact you directly.</li></ul>" +
         "<p style='text-align: left'>Please read each excerpt as you would do with a regular news article. Knowing the answer can sometimes be <b>very hard</b>, so go with your gut feelings! You can also give more or less extreme responses depending on how <b>confident</b> you are. You will be tasked to read 64 excerpts in total.</p>",
     choices: ["Ready"],
-    data: { screen: "fakenews_instructions" }
+    data: { screen: "fakenews_instructions" },
 }
 
 // Trials ==========================================================
@@ -67,15 +66,19 @@ var fakenews_text = {
     type: jsPsychHtmlButtonResponse,
     css_classes: ["narrow-text"],
     stimulus: function () {
-        var title = "<h2>News " + trial_number + " / " + stimuli_list.length + "</h2>"
-        var stim = "<p style='background-color: #f2f2f2'>" + jsPsych.timelineVariable("stimulus") + "</p>"
+        var title =
+            "<h2>News " + trial_number + " / " + stimuli_list.length + "</h2>"
+        var stim =
+            "<p style='background-color: #f2f2f2'>" +
+            jsPsych.timelineVariable("stimulus") +
+            "</p>"
         return title + stim
     },
     choices: ["I Read"],
     data: { screen: "fakenews_text" },
     on_finish: function () {
         trial_number++
-    }
+    },
 }
 
 var fakenews_questions = {
@@ -88,7 +91,7 @@ var fakenews_questions = {
                 "Politics",
                 "Science and Technology",
                 "Social Issues",
-                "Others"
+                "Others",
             ],
             name: "Topic",
             // required: true,
@@ -96,10 +99,7 @@ var fakenews_questions = {
         },
         {
             prompt: "Was the news excerpt related to Singapore?",
-            options: [
-                "Yes",
-                "No"
-            ],
+            options: ["Yes", "No"],
             name: "SingaporeRelated",
             // required: true,
             required: true,
@@ -112,10 +112,15 @@ var fakenews_questions = {
 
 var fakenews_ratings_reality = {
     type: jsPsychMultipleSlider, // this is a custom plugin in utils
-    questions: shuffleArray([  // The order of the questions is randomized per participant
+    questions: shuffleArray([
+        // The order of the questions is randomized per participant
         {
-            prompt: "<b>Do you think the news' content is <i>" + ticks_real[0] + "</i> or <i>" + ticks_real[1]
-                + "</i>?</b><br>",
+            prompt:
+                "<b>Do you think the news' content is <i>" +
+                ticks_real[0] +
+                "</i> or <i>" +
+                ticks_real[1] +
+                "</i>?</b><br>",
             name: "Reality",
             ticks: ticks_real,
             // required: true,
@@ -198,7 +203,7 @@ var fakenews_ratings_appraisal = {
     ]),
     require_movement: true,
     data: {
-        screen: "fakenews_ratings_appraisal"
+        screen: "fakenews_ratings_appraisal",
     },
 }
 
@@ -212,5 +217,16 @@ var fakenews_block1 = {
         fakenews_ratings_appraisal,
     ],
     timeline_variables: stimuli_list.slice(0, 2),
+    randomize_order: true,
+}
+
+var fakenews_block2 = {
+    timeline: [
+        fakenews_text,
+        fakenews_questions,
+        fakenews_ratings_reality,
+        fakenews_ratings_appraisal,
+    ],
+    timeline_variables: stimuli_list.slice(2, 4),
     randomize_order: true,
 }

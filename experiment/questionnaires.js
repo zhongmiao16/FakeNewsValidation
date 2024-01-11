@@ -114,9 +114,9 @@ var questionnaire_media_frequency = {
             name: "news_engagement",
             options: [
                 "Everyday",
-                "Few times a week",
+                "A few times a week",
                 "Once a week",
-                "Few times a month",
+                "A few times a month",
                 "Rarely",
                 "Never",
             ],
@@ -128,9 +128,9 @@ var questionnaire_media_frequency = {
             name: "news_sharing",
             options: [
                 "Everyday",
-                "Few times a week",
+                "A few times a week",
                 "Once a week",
-                "Few times a month",
+                "A few times a month",
                 "Rarely",
                 "Never",
             ],
@@ -283,5 +283,32 @@ var questionnaire_bait = {
     slider_width: 600,
     data: {
         screen: "questionnaire_bait",
+    },
+}
+
+// Other
+// Most of the variables are loaded from online by the script
+var questionnaire_ipip6 = {
+    type: jsPsychMultipleSlider,
+    questions: ipip6((required = false)),
+    randomize_question_order: false,
+    preamble: ipip6_instructions,
+    require_movement: false,
+    slider_width: 600,
+    data: {
+        screen: "questionnaire_ipip6",
+    },
+}
+
+// Create questionnaire variable
+var questionnaire_pid5 = {
+    type: jsPsychSurveyLikert,
+    questions: pid5((required = false)),
+    randomize_question_order: true,
+    preamble: pid5_instructions,
+    require_movement: false,
+    slider_width: 700,
+    data: {
+        screen: "questionnaire_pid5",
     },
 }

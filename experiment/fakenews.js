@@ -218,7 +218,7 @@ var fakenews_block1 = {
         fakenews_ratings_reality,
         fakenews_ratings_appraisal,
     ],
-    timeline_variables: stimuli_list.slice(0, 2),
+    timeline_variables: stimuli_list.slice(0, 16),
     randomize_order: true,
 }
 
@@ -229,6 +229,6 @@ var fakenews_block2 = {
         fakenews_ratings_reality,
         fakenews_ratings_appraisal,
     ],
-    timeline_variables: stimuli_list.slice(2, 4),
+    timeline_variables: stimuli_list.slice(16, 32),
     randomize_order: true,
 }

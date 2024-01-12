@@ -36,9 +36,7 @@ var demographics_participant_id = {
     on_finish: function () {
         // Store `participant_id` so that it can be reused later
         jsPsych.data.addProperties({
-            participant_id: jsPsych.data.get().last().values()[0]["response"][
-                "Participant_ID"
-            ],
+            participant_id: jsPsych.data.get().last().values()[0]["response"]["Participant_ID"],
         })
     },
 }
@@ -101,7 +99,7 @@ var demographics_endscreen = function (
             link +
             "<a/></b></p><br>" +
             "<h2>Information</h2>" +
-            "<p align='left'>The purpose of this study was for us to understand how mood fluctuations and mood disorder symptoms (or absence thereof) are expressed and what difficulties they can generate. Your participation in this study will be kept completely confidential.</p>" +
+            "<p align='left'>The purpose of this study was for us to understand how people can discriminate between real and fake news. Your participation in this study will be kept completely confidential.</p>" +
             "<p align='left'>If you have any questions about the project, please contact D.Makowski@sussex.ac.uk.</p>" +
             "<p><b>You can safely close the tab now.</b></p>",
         choices: ["End"],
@@ -112,17 +110,29 @@ var demographics_endscreen = function (
 // Demographic debrief
 var demographics_debrief = {
     type: jsPsychSurveyMultiChoice,
-    preamble: "<b>Please answer the following questions:</b>",
+    preamble: "<b>It's done!</b> Just before we end, please answer the following questions:",
     questions: [
         {
-            prompt: "Have you previously taken part in the text generation phase of this study?",
+            prompt: "Have you previously taken part in a study involving to create fake and real news?",
             options: ["Yes", "No"],
-            name: "newsgeneration_part",
+            name: "generation_participation",
             required: false,
         },
-    ]
+        {
+            prompt: "In general, would you consider yourself to be good at knowing whether a news is real or fake?",
+            options: [
+                "Very good",
+                "Somewhat good",
+                "Neither good nor bad",
+                "Somewhat bad",
+                "Very bad",
+            ],
+            name: "discrimination_ability",
+            required: false,
+        },
+    ],
+    data: { screen: "demographics_debrief" },
 }
-
 
 // Demographic info ========================================================================
 var demographics_multichoice = {
@@ -164,13 +174,14 @@ var demographics_multichoice = {
             name: "english",
         },
         {
-            prompt: "What is your experience with using AI/ChatGPT (in your studies/work/leisure etc.)?",
+            prompt: "What would your rate your experience/expertise with AI-generation programs like ChatGPT?",
             options: [
-                "Highly experienced",
-                "Experienced",
-                "Relatively experienced",
-                "Little experience",
-                "No experience",
+                "Highly experienced (I use it a lot)",
+                "Experienced (I use it often)",
+                "Relatively experienced (I used it a few times)",
+                "Little experience (I tried it)",
+                "No experience (but I heard about it)",
+                "No experience (I don't know what it is)",
             ],
             name: "ai_expertise",
         },
@@ -185,8 +196,7 @@ var demographics_freetext = {
     questions: [
         {
             prompt: "What is your area of study?",
-            placeholder:
-                "e.g., 'Business', 'Computer Science', 'Arts and Humanities'",
+            placeholder: "e.g., 'Business', 'Computer Science', 'Arts and Humanities'",
             name: "discipline",
         },
         {

@@ -8,11 +8,11 @@
                 padding: 20px 0;
                 background-color: #9c27b0;
                 color: white;
-                font-size: 24px;
+                font-size: 20px;
                 border-radius: 4px;
                 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-                width: 60%; /* Match the width of the container */
-                max-width: 1000px; /* Match the max-width of the container */
+                width: 80%; /* Match the width of the container */
+                max-width: 1200px; /* Match the max-width of the container */
                 margin: 20px auto; /* Center the header */
             }
 
@@ -30,9 +30,8 @@
                 display: flex;
                 flex-direction: column;
                 width: 80%; /* Adjusted width */
-                max-width: 1000px; /* Max width for larger screens */
+                max-width: 1200px; /* Max width for larger screens */
                 border-radius: 10px;
-                overflow: hidden;
                 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for modern look */
                 background-color: white; /* White background for the container */
                 margin-bottom: auto; /* Push everything up */
@@ -45,13 +44,15 @@
             .left-section,
             .right-section {
                 padding: 20px;
-                flex: 1; /* Equal width */
+
             }
             .left-section {
                 background-color: #f7f7f7; /* Slightly different background for contrast */
+                flex: 0.35;
             }
             .right-section {
                 background-color: #f2f2f2; /* Light grey background */
+                flex: 0.65;
             }
             .navigation {
                 text-align: center;
@@ -107,35 +108,83 @@
                 <div class="left-section">
                     <!-- Information about News 1 -->
                     <div class="info-item active" id="info1">
-                        <p>This news was generated as Fake-Emotional-Irrelevant.</p>
+                        <p>This news was generated under the following conditions:</p>
+                        <ul>
+                            <li>Human-generated</li>
+                            <li>Fake</li>
+                            <li>Emotional</li>
+                            <li>Irrelevant</li>
+                        </ul>
                     </div>
                     <!-- Information about News 2 -->
                     <div class="info-item" id="info2">
-                        <p>This news was generated as Fake-Emotional-Relevant.</p>
+                        <p>This news was generated under the following conditions:</p>
+                        <ul>
+                            <li>AI-generated</li>
+                            <li>Fake</li>
+                            <li>Emotional</li>
+                            <li>Relevant</li>
+                        </ul>
                     </div>
                     <!-- Information about News 3 -->
                     <div class="info-item" id="info3">
-                        <p>This news was generated as Fake-Unemotional-Irrelevant.</p>
+                        <p>This news was generated under the following conditions:</p>
+                        <ul>
+                            <li>Human-generated</li>
+                            <li>Fake</li>
+                            <li>Unemotional</li>
+                            <li>Irrelevant</li>
+                        </ul>
                     </div>
                     <!-- Information about News 4 -->
                     <div class="info-item" id="info4">
-                        <p>This news was generated as Fake-Unemotional-Relevant.</p>
+                        <p>This news was generated under the following conditions:</p>
+                        <ul>
+                            <li>Human-generated</li>
+                            <li>Fake</li>
+                            <li>Unemotional</li>
+                            <li>Relevant</li>
+                        </ul>
                     </div>
                     <!-- Information about News 5 -->
                     <div class="info-item" id="info5">
-                        <p>This news was generated as Real-Emotional-Irrelevant.</p>
+                        <p>This news was generated under the following conditions:</p>
+                        <ul>
+                            <li>AI-generated</li>
+                            <li>Real</li>
+                            <li>Emotional</li>
+                            <li>Irrelevant</li>
+                        </ul>
                     </div>
                     <!-- Information about News 6 -->
                     <div class="info-item" id="info6">
-                        <p>This news was generated as Real-Emotional-Relevant.</p>
+                        <p>This news was generated under the following conditions:</p>
+                        <ul>
+                            <li>AI-generated</li>
+                            <li>Real</li>
+                            <li>Emotional</li>
+                            <li>Relevant</li>
+                        </ul>
                     </div>
                     <!-- Information about News 7 -->
                     <div class="info-item" id="info7">
-                        <p>This news was generated as Real-Unemotional-Irrelevant.</p>
+                        <p>This news was generated under the following conditions:</p>
+                        <ul>
+                            <li>Human-generated</li>
+                            <li>Real</li>
+                            <li>Unemotional</li>
+                            <li>Irrelevant</li>
+                        </ul>
                     </div>
                     <!-- Information about News 8 -->
                     <div class="info-item" id="info8">
-                        <p>This news was generated as Real-Unemotional-Relevant.</p>
+                        <p>This news was generated under the following conditions:</p>
+                        <ul>
+                            <li>AI-generated</li>
+                            <li>Real</li>
+                            <li>Unemotional</li>
+                            <li>Relevant</li>
+                        </ul>
                     </div>
                 </div>
                 <div class="right-section">
@@ -163,13 +212,17 @@
                             a national fund. This fund aims to financially support families living
                             below the poverty line. The decision, met with both fervent support and
                             heated opposition, is seen by many as a dramatic shift in the nation's
-                            socio-economic landscape. Proponents argue that such a policy ensures a
+                            socio-economic landscape. 
+                            <br><br>
+                            Proponents argue that such a policy ensures a
                             fairer distribution of wealth and will significantly reduce the nation's
                             wealth gap. They believe that it reflects the core values of solidarity
                             and inclusiveness that Singapore has always strived for. On the other
                             hand, critics are concerned about the strain it may place on
                             middle-class families and question the effectiveness of such a blanket
-                            approach. Early polls suggest a nation deeply divided. Social media
+                            approach. 
+                            <br><br>
+                            Early polls suggest a nation deeply divided. Social media
                             platforms have been inundated with impassioned pleas, testimonials, and
                             debates, reflecting the charged emotions surrounding this policy. As
                             Singaporeans brace themselves for the impending changes, the world
@@ -194,26 +247,23 @@
                     </div>
                     <div class="news-item" id="news4">
                         <p>
-                            In today's headlines from Singapore, a surprising new study reveals that
-                            the number of citizens opting for car-sharing services has seen a
-                            significant rise, decreasing the sales of private vehicles. According to
-                            the recent survey conducted by the Singapore Urban Mobility Association,
-                            over the past year, there has been a 20% increase in the utilization of
-                            car-sharing platforms across the city-state. Experts suggest this shift
-                            could be attributed to the increasing awareness of sustainable urban
-                            living among Singaporeans. While many countries grapple with issues of
-                            urban congestion, pollution, and increasing private vehicle sales,
-                            Singapore appears to be on a different trajectory. Several urban
-                            planners from around the globe are turning their attention to this
-                            trend, keen to understand and possibly replicate Singapore's success in
-                            their own cities. Though private vehicle dealerships have reported a
-                            drop in sales, many are adapting by partnering with car-sharing
-                            platforms to provide newer models for users. City officials believe that
-                            this shift may also contribute to the long-term goal of reducing traffic
-                            congestion in downtown areas, ultimately promoting a cleaner, greener
-                            urban environment. It remains to be seen how this trend will evolve, but
-                            for now, Singapore stands as a beacon for sustainable urban
-                            transportation solutions in the modern age.
+                            In Singapore, discussions surrounding digital privacy and data protection 
+                            have gained momentum in recent years. Policymakers have recently announced 
+                            a "Right to be Forgotten" policy, which would grant individuals greater 
+                            control over their personal information online. This proposed policy aims 
+                            to strike a balance between protecting individual privacy and maintaining 
+                            the free flow of information on the internet. The core idea behind the 
+                            policy is to empower individuals to request the removal of certain online 
+                            information that is outdated or no longer relevant to their lives. This 
+                            would apply to search engine results, social media posts, and other online 
+                            content. Advocates argue that such a policy would provide Singaporeans with 
+                            the means to prevent their past mistakes or personal information from 
+                            haunting them indefinitely on the web. However, critics argue that 
+                            implementing a "Right to be Forgotten" policy may raise concerns about 
+                            censorship and the potential abuse of the system. Striking the right 
+                            balance between individual privacy and freedom of information will be a 
+                            complex task for policymakers, who must consider the broader societal 
+                            implications of such a policy.
                         </p>
                     </div>
                     <div class="news-item" id="news5">
@@ -243,56 +293,72 @@
                             gum sales has been a topic of much debate, both nationally and
                             internationally. Initially introduced to combat the issue of gum
                             littering in public spaces and on public transit, the policy has seen
-                            its fair share of supporters and detractors. Critics argue that such a
-                            ban impinges on personal freedoms and choices. They question if an
-                            entire nation should be deprived of a simple pleasure due to the
-                            misdeeds of a few. On the other hand, proponents of the policy laud its
-                            effectiveness in maintaining the cleanliness and pristine nature of
-                            public spaces, crucial to Singapore's global image. Recently,
-                            concessions have been made, allowing for the sale of therapeutic gum in
-                            certain pharmacies. These gums are designed for dental health or
+                            its fair share of supporters and detractors. 
+                            <br><br>
+                            Critics argue that such a ban impinges on personal freedoms and choices. 
+                            They question if an entire nation should be deprived of a simple pleasure 
+                            due to the misdeeds of a few. On the other hand, proponents of the policy 
+                            laud its effectiveness in maintaining the cleanliness and pristine nature 
+                            of public spaces, crucial to Singapore's global image. 
+                            <br><br>
+                            Recently, concessions have been made, allowing for the sale of therapeutic 
+                            gum in certain pharmacies. These gums are designed for dental health or
                             nicotine replacement, emphasizing the government's commitment to public
                             health. However, strict regulations are in place, and individuals
-                            purchasing these products must register upon purchase. The continued
-                            debate surrounding this policy highlights the balancing act between
-                            maintaining public order and ensuring individual freedoms. As the world
-                            watches, Singapore remains a prime example of the complexities and
+                            purchasing these products must register upon purchase. 
+                            <br><br>
+                            The continued debate surrounding this policy highlights the balancing act 
+                            between maintaining public order and ensuring individual freedoms. As the 
+                            world watches, Singapore remains a prime example of the complexities and
                             intricacies of governance.
                         </p>
                     </div>
                     <div class="news-item" id="news7">
                         <p>
-                            There has been a significant technological development in the software
-                            programming sector, where new languages have been created to develop
-                            faster, easy-to-navigate, more aesthetically pleasing websites with
-                            simpler commands. Even an Excel sheet with some simple graphics can be
-                            converted to a simple website for novice programmers. These languages
-                            have been developed in online forums and spread through word of mouth.
-                            Later, the languages have progressed to be more streamlined and
-                            accessible to the general public.
+                            International trade between countries is common in our day and age. With 
+                            an increasingly globalised world, trade between countries has been made 
+                            easier. Technological advancements in transportation and storage have 
+                            shortened the travel time and extended the shelf life of products. This 
+                            makes it so that more products can be sold at a lower price since there 
+                            is an increase in supply. International Trading has also created an 
+                            increase in demand for new items that may not be available in the country 
+                            of origin. Food, technologies, and raw materials are traded, creating a 
+                            more unified and globalised world. This ease of access to every country 
+                            for trade has created a global marketplace. This by far has made it so 
+                            that every economy in the world is linked together, and with it, the 
+                            impact of a single economy would be felt by everyone else in the world.
                         </p>
                     </div>
                     <div class="news-item" id="news8">
                         <p>
-                            Singapore's Urban Development Promotes Green Spaces In a recent move
+                            Singapore's Urban Development Promotes Green Spaces 
+                            <br><br>
+                            In a recent move
                             that highlights Singapore's commitment to sustainable urban development,
                             the city-state has unveiled plans to increase its green spaces and parks
                             in densely populated areas. Officials believe that the initiative will
                             serve multiple purposes, including improving air quality and providing
-                            residents with recreational spaces. The project, which was announced
+                            residents with recreational spaces. 
+                            <br><br>
+                            The project, which was announced
                             last week by the Urban Redevelopment Authority (URA), emphasizes
                             Singapore's focus on balancing rapid urbanization with the wellbeing of
                             its residents. The URA noted that with the ongoing urban sprawl, it's
                             essential to ensure that residents have accessible areas to relax and
-                            connect with nature. As part of the plan, areas such as Tampines and
+                            connect with nature. 
+                            <br><br>
+                            As part of the plan, areas such as Tampines and
                             Woodlands will see an expansion of existing parks, as well as the
                             introduction of rooftop gardens and vertical greenery on buildings.
                             Residents of these areas have expressed appreciation for the initiative,
                             noting the enhanced aesthetic appeal and the potential health benefits.
+                            <br><br>
                             Dr. Lee Kuan, an urban planner from the National University of
-                            Singapore, commented on the announcement, saying, ""Green spaces play a
+                            Singapore, commented on the announcement, saying, "Green spaces play a
                             crucial role in urban areas, not just for the environment, but for the
-                            mental wellbeing of residents."" The initiative is expected to begin in
+                            mental wellbeing of residents." 
+                            <br><br>
+                            The initiative is expected to begin in
                             the coming months and aims to increase the green spaces in Singapore by
                             10% over the next five years. The move is viewed by many as a positive
                             step in addressing the social concerns related to urban development and

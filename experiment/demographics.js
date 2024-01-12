@@ -118,7 +118,7 @@ var demographics_debrief = {
             prompt: "Have you previously taken part in the text generation phase of this study?",
             options: ["Yes", "No"],
             name: "newsgeneration_part",
-            required: true,
+            required: false,
         },
     ]
 }

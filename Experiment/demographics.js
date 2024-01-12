@@ -56,7 +56,7 @@ var demographics_consent = {
         "You are being invited to take part in a research study to further our understanding of Human psychology. Thank you for carefully reading this information sheet. This study is being conducted by Prof Annabel Chen from the School of Social Sciences, Nanyang Technological University, who is happy to be contacted if you have any questions.</p>" +
         // Description
         "<p align='left'><b>Why have I been invited and what will I do?</b><br>" +
-        "We are surveying adults to understand how people judge real and fake news articles. The whole experiment will take you <b>about 30S min</b> to complete. Please make you sure that you are in a quiet environment, and that you have time to complete it in one go.</p>" +
+        "We are surveying adults to understand how people judge real and fake news articles. The whole experiment will take you <b>about 30 min</b> to complete. Please make you sure that you are in a quiet environment, and that you have time to complete it in one go.</p>" +
         // Results and personal information
         "<p align='left'><b>What will happen to the results and my personal information?</b><br>" +
         "The results of this research may be written into a scientific publication. Your anonymity will be ensured in the way described in the consent information below. Please read this information carefully and then, if you wish to take part, please acknowledge that you have fully understood this sheet, and that you consent to take part in the study as it is described here.</p>" +
@@ -71,7 +71,7 @@ var demographics_consent = {
         "<li align='left'>Please note that various checks will be performed to ensure the validity of the data. We reserve the right to withhold credit awards or reimbursement should we detect non-valid responses (e.g., random patterns of answers, instructions not read, ...).</li>" +
         "<li align='left'>By participating, you agree to follow the instructions and provide honest answers. If you do not wish to participate, simply close your browser.</li>" +
         "</p>" +
-        "<p align='left'><br><sub><sup>For further information about this research, or if you have any concerns, please contact Prof Annabel Chen (annabelchen@ntu.edu.sg). This research has been approved (XX/XXXX/XX) by the ethics board of the university.</sup></sub></p>",
+        "<p align='left'><br><sub><sup>For further information about this research, or if you have any concerns, please contact Prof Annabel Chen (annabelchen@ntu.edu.sg). This research has been approved (IRB-2022-785) by the ethics board of the University.</sup></sub></p>",
 
     choices: ["I read, understood, and I consent"],
     data: { screen: "consent" },
@@ -109,6 +109,21 @@ var demographics_endscreen = function (
     }
 }
 
+// Demographic debrief
+var demographics_debrief = {
+    type: jsPsychSurveyMultiChoice,
+    preamble: "<b>Please answer the following questions:</b>",
+    questions: [
+        {
+            prompt: "Have you previously taken part in the text generation phase of this study?",
+            options: ["Yes", "No"],
+            name: "newsgeneration_part",
+            required: true,
+        },
+    ]
+}
+
+
 // Demographic info ========================================================================
 var demographics_multichoice = {
     type: jsPsychSurveyMultiChoice,
@@ -138,7 +153,7 @@ var demographics_multichoice = {
             name: "education",
         },
         {
-            prompt: "English level",
+            prompt: "What is your current English level?",
             options: [
                 "Native",
                 "Fluent (academic)",
@@ -147,6 +162,17 @@ var demographics_multichoice = {
                 "Beginner",
             ],
             name: "english",
+        },
+        {
+            prompt: "What is your experience with using AI/ChatGPT (in your studies/work/leisure etc.)?",
+            options: [
+                "Highly experienced",
+                "Experienced",
+                "Relatively experienced",
+                "Little experience",
+                "No experience",
+            ],
+            name: "ai_expertise",
         },
     ],
     data: {

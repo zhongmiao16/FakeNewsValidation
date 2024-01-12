@@ -40,7 +40,7 @@ if (ticks_ai[1] == "Human") {
 }
 
 // Instructions
-var fakenews_instructions = {
+var fakenews_instructions1 = {
     type: jsPsychHtmlButtonResponse,
     css_classes: ["narrow-text"],
     stimulus:
@@ -53,11 +53,22 @@ var fakenews_instructions = {
         "<li><b>Human vs. AI-generated</b>: Do you think the text was written by a <b>Human or an AI</b> (regardless of whether the content is true or false).</li>" +
         "<li><b>Engaging</b>: To what extent did you find the news engaging (e.g., interesting or fun). Strongly engaging content would typically lead us to spend more time searching more information, or commenting on and sharing it.</li>" +
         '<li><b>Emotionality</b>: To what extent was the news "emotional". Did the news trigger any feelings in you while reading it?</li>' +
-        "<li><b>Importance</b>: Assuming the news is true, to what extent is it important (e.g., a matter of national concern)?</li>" +
+        "<li><b>Importance</b>: Assuming the news is true, to what extent is it important in general for the world (e.g., a matter of national concern)?</li>" +
         "<li><b>Relevance</b>: To what extend was the news about something relevant to you, either because it's something you care about, or something that might impact you directly.</li></ul>" +
         "<p style='text-align: left'>Please read each excerpt as you would do with a regular news article. Knowing the answer can sometimes be <b>very hard</b>, so go with your gut feelings! You can also give more or less extreme responses depending on how <b>confident</b> you are. You will be tasked to read 32 excerpts in total.</p>",
     choices: ["Ready"],
-    data: { screen: "fakenews_instructions" },
+    data: { screen: "fakenews_instructions1" },
+}
+
+// Instructions
+var fakenews_instructions2 = {
+    type: jsPsychHtmlButtonResponse,
+    css_classes: ["narrow-text"],
+    stimulus:
+        "<h1>News judgment</h1>" +
+        "<p Now, we would like you to rate some new news again, just as you did in the previous phase.</p>",
+    choices: ["Ready"],
+    data: { screen: "fakenews_instructions2" },
 }
 
 // Trials ==========================================================
@@ -66,12 +77,9 @@ var fakenews_text = {
     type: jsPsychHtmlButtonResponse,
     css_classes: ["narrow-text"],
     stimulus: function () {
-        var title =
-            "<h2>News " + trial_number + " / " + stimuli_list.length + "</h2>"
+        var title = "<h2>News " + trial_number + " / " + stimuli_list.length + "</h2>"
         var stim =
-            "<p style='background-color: #f2f2f2'>" +
-            jsPsych.timelineVariable("stimulus") +
-            "</p>"
+            "<p style='background-color: #f2f2f2'>" + jsPsych.timelineVariable("stimulus") + "</p>"
         return title + stim
     },
     choices: ["I Read"],
@@ -86,13 +94,7 @@ var fakenews_questions = {
     questions: [
         {
             prompt: "What is the topic of the news excerpt you just read?",
-            options: [
-                "Economy",
-                "Politics",
-                "Science and Technology",
-                "Social Issues",
-                "Others",
-            ],
+            options: ["Economy", "Politics", "Science and Technology", "Social Issues", "Others"],
             name: "Topic",
             // required: true,
             required: true,
@@ -181,7 +183,7 @@ var fakenews_ratings_appraisal = {
             slider_start: 0.5,
         },
         {
-            prompt: "<b>Assuming the news was true, to what extent would it be important?</b><br>",
+            prompt: "<b>Assuming the news was true, to what extent would it be important for the world?</b><br>",
             name: "Importance",
             ticks: ["Not at all", "Very"],
             required: true,

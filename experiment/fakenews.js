@@ -191,7 +191,7 @@ var fakenews_ratings_appraisal = {
             slider_start: 0.5,
         },
         {
-            prompt: "<b>To what extend was the news' content relevant to you?</b><br>",
+            prompt: "<b>To what extent was the news' content relevant to you?</b><br>",
             name: "Relevance",
             ticks: ["Not at all", "Very"],
             required: true,

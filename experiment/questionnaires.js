@@ -32,7 +32,7 @@ var questionnaire_media_frequency = {
             required: false,
         },
         {
-            prompt: "<b>Social media (twitter, reddit, facebook, ...)</b>",
+            prompt: "<b>Social media (Twitter, Reddit, Facebook, ...)</b>",
             name: "newsfrequency_socialmedia",
             options: [
                 "Several times a day",

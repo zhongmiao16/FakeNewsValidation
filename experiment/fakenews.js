@@ -46,7 +46,7 @@ var fakenews_instructions = {
     stimulus:
         "<h1>Instructions</h1>" +
         "<p style='text-align: left'>In this experiment, we are interested in how you judge and perceive different short <b>news excerpts</b>.</p>" +
-        "<p style='text-align: left'>Importantly, some of these texts correspond to <b>real news</b> (true), but others are <b>fake</b> (not true). Some were written <b>by Humans</b>n and some were created by an <b>Artificial Intellignece (AI) algorithm</b> (like ChatGPT).</p>" +
+        "<p style='text-align: left'>Importantly, some of these texts correspond to <b>real news</b> (true), but others are <b>fake</b> (not true). Some were written <b>by Humans</b> and some were created by an <b>Artificial Intelligence (AI) algorithm</b> (like ChatGPT).</p>" +
         "<p style='text-align: left'>You will have to read each news, and then answer a few questions about it and evaluate each news on the following scales:</p>" +
         "<ul style='text-align: left'>" +
         "<li><b>Real vs. Fake</b>: Do you think that the content of the news is <b>real</b> (true) or <b>fake</b> (false).</li>" +
@@ -55,7 +55,7 @@ var fakenews_instructions = {
         '<li><b>Emotionality</b>: To what extent was the news "emotional". Did the news trigger any feelings in you while reading it?</li>' +
         "<li><b>Importance</b>: Assuming the news is true, to what extent is it important (e.g., a matter of national concern)?</li>" +
         "<li><b>Relevance</b>: To what extend was the news about something relevant to you, either because it's something you care about, or something that might impact you directly.</li></ul>" +
-        "<p style='text-align: left'>Please read each excerpt as you would do with a regular news article. Knowing the answer can sometimes be <b>very hard</b>, so go with your gut feelings! You can also give more or less extreme responses depending on how <b>confident</b> you are. You will be tasked to read 64 excerpts in total.</p>",
+        "<p style='text-align: left'>Please read each excerpt as you would do with a regular news article. Knowing the answer can sometimes be <b>very hard</b>, so go with your gut feelings! You can also give more or less extreme responses depending on how <b>confident</b> you are. You will be tasked to read 32 excerpts in total.</p>",
     choices: ["Ready"],
     data: { screen: "fakenews_instructions" },
 }
@@ -191,7 +191,7 @@ var fakenews_ratings_appraisal = {
             slider_start: 0.5,
         },
         {
-            prompt: "<b>To what extend was the news' content relevant to you?</b><br>",
+            prompt: "<b>To what extent was the news' content relevant to you?</b><br>",
             name: "Relevance",
             ticks: ["Not at all", "Very"],
             required: true,

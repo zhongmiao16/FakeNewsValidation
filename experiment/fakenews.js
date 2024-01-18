@@ -24,6 +24,7 @@ for (let cat of [...new Set(stimuli.map((a) => a.code))]) {
     }
 }
 stimuli_list = shuffleArray(stimuli_list) // Shuffle
+// console.log(stimuli_list)
 
 // Randomize ticks order
 var ticks_real = shuffleArray(["Real", "Fake"])

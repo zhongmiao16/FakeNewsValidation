@@ -16,7 +16,7 @@ var questionnaire_media_frequency = {
                 "Once a week",
                 "Less often than once a week",
             ],
-            required: false,
+            required: true,
         },
         {
             prompt: "<b>Phone apps</b>",
@@ -29,7 +29,7 @@ var questionnaire_media_frequency = {
                 "Once a week",
                 "Less often than once a week",
             ],
-            required: false,
+            required: true,
         },
         {
             prompt: "<b>Social media (Twitter, Reddit, Facebook, ...)</b>",
@@ -42,7 +42,7 @@ var questionnaire_media_frequency = {
                 "Once a week",
                 "Less often than once a week",
             ],
-            required: false,
+            required: true,
         },
         {
             prompt: "<b>Television</b>",
@@ -55,7 +55,7 @@ var questionnaire_media_frequency = {
                 "Once a week",
                 "Less often than once a week",
             ],
-            required: false,
+            required: true,
         },
         {
             prompt: "<b>Newspapers</b>",
@@ -68,7 +68,7 @@ var questionnaire_media_frequency = {
                 "Once a week",
                 "Less often than once a week",
             ],
-            required: false,
+            required: true,
         },
         // {
         //     prompt: "<b>Books</b>",
@@ -94,7 +94,7 @@ var questionnaire_media_frequency = {
                 "Once a week",
                 "Less often than once a week",
             ],
-            required: false,
+            required: true,
         },
         {
             prompt: "<b>In general, how interested are you in keeping up with news?</b>",
@@ -107,7 +107,7 @@ var questionnaire_media_frequency = {
                 "Not at all interested",
             ],
             // required: true,
-            required: false,
+            required: true,
         },
         {
             prompt: "<b>In general, how often do you engage with the news (commenting them, discussing them on social media, bringing them up in conversations, etc.)</b>",
@@ -121,7 +121,7 @@ var questionnaire_media_frequency = {
                 "Never",
             ],
             // required: true,
-            required: false,
+            required: true,
         },
         {
             prompt: "<b>In general, how often do you share news and news links (i.e., do you often do you forward or send news articles to other people)</b>",
@@ -135,7 +135,7 @@ var questionnaire_media_frequency = {
                 "Never",
             ],
             // required: true,
-            required: false,
+            required: true,
         },
     ],
     require_movement: true,
@@ -166,7 +166,7 @@ var questionnaire_news_types = {
                 "Celebrity-related news",
             ],
             name: "type",
-            required: false,
+            required: true,
         },
         // {
         //     prompt: "Which of the following have you used in the last month as a source of news information?",
@@ -217,7 +217,7 @@ function format_questions_analog(
             prompt: "<b>" + element + "</b>",
             name: dimensions[index],
             ticks: ticks,
-            required: false,
+            required: true,
             min: 0,
             max: 1,
             step: 0.01,
@@ -279,7 +279,7 @@ var questionnaire_bait = {
     ),
     randomize_question_order: true,
     preamble: bait_instructions,
-    require_movement: false,
+    require_movement: true,
     slider_width: 600,
     data: {
         screen: "questionnaire_bait",
@@ -293,7 +293,7 @@ var questionnaire_ipip6 = {
     questions: ipip6((required = false)),
     randomize_question_order: false,
     preamble: ipip6_instructions,
-    require_movement: false,
+    require_movement: true,
     slider_width: 600,
     data: {
         screen: "questionnaire_ipip6",
@@ -306,7 +306,7 @@ var questionnaire_pid5 = {
     questions: pid5((required = false)),
     randomize_question_order: true,
     preamble: pid5_instructions,
-    require_movement: false,
+    require_movement: true,
     slider_width: 700,
     data: {
         screen: "questionnaire_pid5",

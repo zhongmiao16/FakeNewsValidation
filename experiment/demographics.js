@@ -136,19 +136,14 @@ var demographics_debrief = {
 }
 
 // Demographic PayNow
+var jsPsych = initJsPsych()
+var random_id = jsPsych.randomization.randomID(8)
 var demographics_paynow = {
-    type: jsPsychSurveyText,
-    questions: [
-        {
-            prompt: "Please input your PayNow registered phone number for reimbursement purposes. The payment will be made to you within 7 business days from submission. Please ensure that the phone number entered is correct before submission.",
-            placeholder: "PayNow registered phone no., e.g., 91234567",
-            name: "paynow",
-            required: true
-        },
-    ],
-    data: {
-        screen: "demographics_paynow",
-    },
+    type: jsPsychHtmlButtonResponse,
+    stimulus: 
+        "<p>To process your reimbursement for taking part in this study, please copy the code below and send it as the subject title via email to <u>gameplaystudy@gmail.com</u>, and include your <b>PayNow registered phone number</b> in the email text.<br><br></p>" + "<b><p style='background-color: #f2f2f2'>" + random_id + "</p></b><br><br>",       
+    choices: ["Continue"],
+    data: { screen: "demographics_paynow" },
 }
 
 // Demographic info ========================================================================

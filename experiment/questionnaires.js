@@ -290,7 +290,7 @@ var questionnaire_bait = {
 // Most of the variables are loaded from online by the script
 var questionnaire_ipip6 = {
     type: jsPsychMultipleSlider,
-    questions: ipip6((required = false)),
+    questions: ipip6((required = true)),
     randomize_question_order: false,
     preamble: ipip6_instructions,
     require_movement: true,
@@ -306,7 +306,7 @@ var questionnaire_pid5 = {
     questions: pid5((required = false)),
     randomize_question_order: true,
     preamble: pid5_instructions,
-    require_movement: true,
+    required: true,
     slider_width: 700,
     data: {
         screen: "questionnaire_pid5",

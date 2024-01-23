@@ -80,7 +80,7 @@ var fakenews_text = {
     stimulus: function () {
         var title = "<h2>News " + trial_number + " / " + stimuli_list.length + "</h2>"
         var stim =
-            "<p style='background-color: #f2f2f2'>" + jsPsych.timelineVariable("stimulus") + "</p>"
+            "<p style='background-color: #f2f2f2'>" + jsPsych.timelineVariable("stimulus") + "</p>" + "<p style='font-size:0%'>" + jsPsych.timelineVariable("excerpt_num") + "</p>"
         return title + stim
     },
     choices: ["I Read"],

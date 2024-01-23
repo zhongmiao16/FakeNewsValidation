@@ -303,7 +303,7 @@ var questionnaire_ipip6 = {
 // Create questionnaire variable
 var questionnaire_pid5 = {
     type: jsPsychSurveyLikert,
-    questions: pid5((required = false)),
+    questions: pid5((required = true)),
     randomize_question_order: true,
     preamble: pid5_instructions,
     required: true,

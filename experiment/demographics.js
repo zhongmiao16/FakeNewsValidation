@@ -54,7 +54,7 @@ var demographics_consent = {
         "You are being invited to take part in a research study to further our understanding of human psychology. Thank you for carefully reading this information sheet. This study is being conducted by Prof Annabel Chen from the School of Social Sciences, Nanyang Technological University, who is happy to be contacted if you have any questions.</p>" +
         // Description
         "<p align='left'><b>Why have I been invited and what will I do?</b><br>" +
-        "We are surveying adults to understand how people judge real and fake news articles. The whole experiment will take you <b>about 30-45 min</b> to complete. Please make sure that you are in a quiet environment, and that you have time to complete it in one go.</p>" +
+        "We are surveying adults to understand how people judge real and fake news articles. The whole experiment will take you <b>about 30-45 min</b> to complete. Please make sure that you are in a quiet environment, and that you have time to complete it in one go. You will be reimbursed <b>$12</b> for your participation in this study.</p>" +
         // Results and personal information
         "<p align='left'><b>What will happen to the results and my personal information?</b><br>" +
         "The results of this research may be written into a scientific publication. Your anonymity will be ensured in the way described in the consent information below. Please read this information carefully and then, if you wish to take part, please acknowledge that you have fully understood this sheet, and that you consent to take part in the study as it is described here.</p>" +
@@ -141,7 +141,7 @@ var random_id = jsPsych.randomization.randomID(8)
 var demographics_paynow = {
     type: jsPsychHtmlButtonResponse,
     stimulus: 
-        "<p>To process your reimbursement for taking part in this study, please copy the code below and send it as the subject title via email to <u>gameplaystudy@gmail.com</u>, and include your <b>PayNow registered phone number</b> in the email text.<br><br></p>" + "<b><p style='background-color: #f2f2f2'>" + random_id + "</p></b><br><br>",       
+        "<p>To process your reimbursement for taking part in this study, please copy the code below and send it as the subject title via email to <u>gameplaystudy@gmail.com</u>, and include your <b>full name</b> and your <b>PayNow registered phone number</b> in the email text.<br><br></p>" + "<b><p style='background-color: #f2f2f2'>" + random_id + "</p></b><br><br>",       
     choices: ["Continue"],
     data: { screen: "demographics_paynow" },
 }

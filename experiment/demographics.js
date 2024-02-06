@@ -19,6 +19,23 @@ var demographics_browser_info = {
         data["researcher"] = urlvars["exp"]
     },
 }
+// For stopping collection when quota hits
+var demographics_quotahit = function (
+    link = "https://dominiquemakowski.github.io/PHQ4R/study2/experiment/experimenter1.html"
+) {
+    return {
+        type: jsPsychHtmlButtonResponse,
+        css_classes: ["narrow-text"],
+        stimulus:
+            "<img src='https://seeklogo.com/images/N/nanyang-technological-university-logo-99C7E42213-seeklogo.com.png' width='150px' align='right'/><br><br><br><br><br>" +
+            "<br><p>Thank you for your interest in our study!</p>" +
+            "<p>We have currently reached our participant quota, however, we may open more slots in the coming weeks.</p>" +
+            "<p>If you are interested in taking part if more quota is made available please email gameplaystudy@gmail.com to indicate your interest.</p>",
+        choices: ["End"],
+        data: { screen: "endscreen" },
+    }
+}
+
 
 // Participant ID ========================================================================
 var demographics_participant_id = {

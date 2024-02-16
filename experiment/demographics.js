@@ -85,6 +85,7 @@ var demographics_consent = {
         // Incentive
         "<li align='left'>I acknowledge, agree and consent that Nanyang Technological University ('NTU') is permitted to collect, use, disclose and/or process my personal data for facilitating, processing, administering and/or managing payments arising from my participation in this study (the 'Purpose'). I further acknowledge, agree and consent that NTU is permitted to collect, use or process my personal data and to disclose my personal data to third parties (whether located within or outside Singapore), in each respect, for the above Purpose and for the third parties to subsequently collect, use, disclose and/or process your personal data for the above Purpose.</li>" +
         "<li align='left'><b>Please note that various checks will be performed to ensure the validity of the data. We reserve the right to withhold credit awards or reimbursement should we detect non-valid responses (e.g., random patterns of answers, instructions not read, ...).</b></li>" +
+        "<li align='left'><b>This study is also currently only open to invited participants who have received an email invite from the study team. We reserve the right to withhold credit awards or reimbursement to participants who did not receive the invitation email from the study team.</b></li>" +
         "<li align='left'>By participating, you agree to follow the instructions and provide honest answers. If you do not wish to participate, simply close your browser.</li>" +
         "</p>" +
         "<p align='left'><br><sub><sup>For further information about this research, or if you have any concerns, please contact Prof Annabel Chen (annabelchen@ntu.edu.sg). This research has been approved (IRB-2022-785) by the ethics board of the University.</sup></sub></p>",
@@ -110,11 +111,6 @@ var demographics_endscreen = function (
         css_classes: ["narrow-text"],
         stimulus:
             "<h1>Thank you for participating</h1>" +
-            "<p>It means a lot to us. Don't hesitate to share the study by sending this link:</p>" +
-            "<p><b><a href='" +
-            link +
-            "'>" +
-            link +
             "<a/></b></p><br>" +
             "<h2>Information</h2>" +
             "<p align='left'>The purpose of this study was for us to understand how people can discriminate between real and fake news. Your participation in this study will be kept completely confidential.</p>" +
@@ -131,7 +127,7 @@ var demographics_debrief = {
     preamble: "<b>It's done!</b> Just before we end, please answer the following questions:",
     questions: [
         {
-            prompt: "Have you previously taken part in a study involving to create fake and real news?",
+            prompt: "Have you previously taken part in a study involving the creation of fake and real news?",
             options: ["Yes", "No"],
             name: "generation_participation",
             required: true,
@@ -158,7 +154,7 @@ var random_id = jsPsych.randomization.randomID(8)
 var demographics_paynow = {
     type: jsPsychHtmlButtonResponse,
     stimulus: 
-        "<p>To process your reimbursement for taking part in this study, please copy the code below and send it as the subject title via email to <u>gameplaystudy@gmail.com</u>, and include your <b>full name</b> and your <b>PayNow registered phone number</b> in the email text.<br><br></p>" + "<b><p style='background-color: #f2f2f2'>" + random_id + "</p></b><br><br>",       
+        "<p>To process your reimbursement for taking part in this study, please copy the code below and send it as the subject title via email to <u>gameplaystudy@gmail.com</u>, and include your <b>full name</b> and your <b>PayNow registered phone number</b> in the email text. <b>DO NOT EXIT ON THIS PAGE, PLEASE NAVIGATE TO THE END OF THE STUDY FOR YOUR SUBMISSION TO BE DEEMED COMPLETE.</b><br><br></p>" + "<b><p style='background-color: #f2f2f2'>" + random_id + "</p></b><br><br>",       
     choices: ["Continue"],
     data: { screen: "demographics_paynow" },
 }
